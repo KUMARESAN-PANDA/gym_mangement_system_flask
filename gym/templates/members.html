@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Members List</title>
+    <style>
+        /* General page styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 50px auto;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Table styling */
+.members-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 1rem;
+    text-align: left;
+}
+
+.members-table thead {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.members-table th, .members-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+.members-table tbody tr {
+    background-color: #f9f9f9;
+}
+
+.members-table tbody tr:nth-child(even) {
+    background-color: #f1f1f1;
+}
+
+.members-table tbody tr:hover {
+    background-color: #f2f2f2;
+}
+
+/* Logout button styling */
+.logout-form {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.logout-btn {
+    background-color: #ff4b4b;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.logout-btn:hover {
+    background-color: #d73838;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gym Members List</h1>
+        <table class="members-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Height</th>
+                    <th>Weight</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>Address</th>
+                    <th>Date of Joining</th>
+                    <th>User ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for member in members %}
+                <tr>
+                    <td>{{ member.id }}</td>
+                    <td>{{ member.first_name }}</td>
+                    <td>{{ member.last_name }}</td>
+                    <td>{{ member.height }}</td>
+                    <td>{{ member.weight }}</td>
+                    <td>{{ member.phone }}</td>
+                    <td>{{ member.email }}</td>
+                    <td>{{ member.gender }}</td>
+                    <td>{{ member.address }}</td>
+                    <td>{{ member.date_of_joining }}</td>
+                    <td>{{ member.user_id }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Logout button -->
+        <form action="{{ url_for('admin_logout') }}" method="GET" class="logout-form">
+            <button type="submit" class="logout-btn">Logout</button>
+        </form>
+    </div>
+</body>
+</html>

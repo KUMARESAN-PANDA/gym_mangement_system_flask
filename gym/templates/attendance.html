@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Records</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="{{ url_for('root') }}">Home</a>
+    <a href="{{ url_for('register') }}">Register</a>
+    <a href="{{ url_for('show_members') }}">Members</a>
+    <a href="{{ url_for('attendance') }}">Attendance</a>
+</nav>
+
+<h1>Attendance Records</h1>
+<table>
+    <tr>
+       
+        <th>Member ID</th>
+        <th>Check In Time</th>
+        <th>Check Out Time</th>
+        <th>Total Time</th>
+    </tr>
+    {% for attendance in attendances %}
+    <tr>
+        <td>{{ attendance.member_id }}</td>
+        <td>{{ attendance.check_in_time.strftime('%I:%M %p') }}</td>
+        <td>{{ attendance.check_out_time.strftime('%I:%M %p') if attendance.check_out_time else 'Still inside' }}</td>
+        <td>{{ attendance.total_time if attendance.total_time else 'N/A' }}</td>
+    </tr>
+{% endfor %}
+
+</table>
+
+</body>
+</html>
